@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CUE Cinemas Lahore — Pakistan's most premium cinema experience. MAXIMUS RGB Laser, Dolby Atmos, Platinum recliners. Book tickets online.">
+  <title>CUE Cinemas — Premium Cinema Experience | Lahore</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- ============ CINEMATIC PRELOADER ============ -->
+<div id="preloader">
+  <div class="preloader-content">
+    <div class="preloader-logo">CUE</div>
+    <div class="preloader-counter">0%</div>
+    <div class="preloader-bar"><div class="preloader-progress"></div></div>
+  </div>
+</div>
+
+<!-- ============ CINEMATIC BACKGROUND EFFECTS ============ -->
+<div class="ambient-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<canvas id="bg-dust"></canvas>
+<div id="mouse-spotlight"></div>
+
+<div class="custom-cursor"></div>
+<div class="custom-cursor-follower"></div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <svg width="180" height="42" viewBox="0 0 180 42">
+        <text x="0" y="32" font-family="'Playfair Display', serif" font-size="34" font-weight="900" fill="url(#goldGrad)">CUE</text>
+        <text x="72" y="32" font-family="'Inter', sans-serif" font-size="10" font-weight="300" fill="#b0b0b0" letter-spacing="4">CINEMAS</text>
+        <defs>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d4a853"/>
+            <stop offset="50%" stop-color="#f0dca3"/>
+            <stop offset="100%" stop-color="#c9a456"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#movies">Movies</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#events">Events</a>
+      <a href="#loyalty">Loyalty</a>
+      <a href="#contact">Contact</a>
+      <a href="https://cuecinemas.com/Ticketing/visShop.aspx?visLang=1" class="nav-cta">Shop</a>
+    </div>
+    <div class="nav-auth">
+      <a href="https://cuecinemas.com/Browsing/Loyalty/Clubs" style="color:var(--text-secondary);font-weight:500;">Sign In</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO — Valorant-style BG Video ============ -->
+<section class="hero" id="home">
+  <div class="hero-video-wrapper">
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1920&q=80">
+      <source src="https://cdn.coverr.co/videos/coverr-an-empty-theater-2559/1080p.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Now Showing — 15 Movies
+    </div>
+    <h1 class="hero-title">
+      THE ULTIMATE<br><span class="gold-text">CINEMA EXPERIENCE</span>
+    </h1>
+    <p class="hero-description">
+    </p>
+    <div class="hero-actions">
+      <a href="#movies" class="btn btn-primary magnetic-btn">
+        <i class="fas fa-ticket-alt"></i> Book Tickets
+      </a>
+      <a href="#experiences" class="btn btn-outline magnetic-btn">
+        <i class="fas fa-play"></i> Explore Screens
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+  <div id="lens-flare"></div>
+</section>
+
+<!-- ============ QUICK BOOKING BAR ============ -->
+<div class="quick-book">
+  <div class="quick-book-inner reveal">
+    <span class="quick-book-label">⚡ Quick Book</span>
+    <div class="quick-book-fields">
+      <select id="qb-movie"><option>Select Movie</option><option>The Super Mario Galaxy Movie</option><option>Bambukat 2</option><option>They Will Kill You</option><option>Aag Lage Basti Mein</option><option>Alas Roban</option><option>Bone Lake</option><option>Bullah</option><option>Dasim</option><option>Delhi Gate</option><option>Project Hail Mary</option><option>Ready or Not 2</option><option>Viyaah Kartaare Da</option><option>Hoppers</option><option>GOAT</option><option>Carry on Jatta 3</option></select>
+      <select id="qb-cinema"><option>Select Cinema</option><option>CUE Cinemas — Gulberg, Lahore</option></select>
+      <select id="qb-date"><option>Select Date</option><option>Today — Thu 26 Mar</option><option>Fri 27 Mar</option><option>Sat 28 Mar</option><option>Sun 29 Mar</option></select>
+    </div>
+    <a href="https://cuecinemas.com/Browsing/Cinemas/Details/1001" class="btn btn-primary btn-sm">Find Shows</a>
+  </div>
+</div>
+
+<!-- ============ NOW SHOWING / COMING SOON ============ -->
+<section class="movies-section" id="movies">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">What's Playing</span>
+      <h2 class="section-title">Movies</h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <div class="movies-tabs reveal">
+      <button class="active" data-tab="now-showing">Now Showing</button>
+      <button data-tab="coming-soon">Coming Soon</button>
+    </div>
+
+    <!-- NOW SHOWING -->
+    <div class="movies-panel" id="now-showing">
+      <div class="movies-grid">
+
+        <div class="movie-card reveal stagger-1" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001031','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/qfAfE5auxsuxhxPpnETRAyTP5ff.jpg" alt="Super Mario Galaxy Movie" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=k8PYWNl7I0w" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>The Super Mario Galaxy Movie</h3>
+            <div class="movie-meta"><span class="tag">Advance</span><span>Animation</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal stagger-2" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001085','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/u6WpOaLpGxVwbEWMbqITBbhkiZe.jpg" alt="Bambukat 2" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=OtYlv97NlO4" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Bambukat 2</h3>
+            <div class="movie-meta"><span class="tag">New</span><span>Punjabi</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal stagger-3" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001061','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/tK1zy5BIkbX51DuZ3bBqxv1Nxjm.jpg" alt="They Will Kill You" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>They Will Kill You</h3>
+            <div class="movie-meta"><span>Horror / Thriller</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal stagger-4" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001078','_blank')">
+          <div class="movie-poster">
+            <img src="https://placehold.co/300x450/1a1a1a/d4a853?text=Aag+Lage+Basti+Mein&font=playfair-display" alt="Aag Lage Basti Mein" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Aag Lage Basti Mein</h3>
+            <div class="movie-meta"><span class="tag">Pak</span><span>Action</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal stagger-5" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001070','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/a0MdFJPyJOFTJDMRGNsIEjpn2r9.jpg" alt="Bone Lake" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=CCccUsyWjG0" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Bone Lake</h3>
+            <div class="movie-meta"><span>Horror Comedy</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001074','_blank')">
+          <div class="movie-poster">
+            <img src="https://placehold.co/300x450/1a1a1a/d4a853?text=Bullah&font=playfair-display" alt="Bullah" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Bullah</h3>
+            <div class="movie-meta"><span class="tag">Pak</span><span>Sufi Action</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001080','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/v1V6yAfPLpLZCcfGih3hRQf5Kfx.jpg" alt="Dasim" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=KjGpdrx0KLE" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Dasim</h3>
+            <div class="movie-meta"><span>Horror</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00000742','_blank')">
+          <div class="movie-poster">
+            <img src="https://placehold.co/300x450/1a1a1a/d4a853?text=Delhi+Gate&font=playfair-display" alt="Delhi Gate" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=6eF8FexhCLM" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Delhi Gate</h3>
+            <div class="movie-meta"><span class="tag">Pak</span><span>Drama</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001020','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/jKr1eiDfDkuVIn0zcO8gIxeKrKL.jpg" alt="Project Hail Mary" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=m08TxIsFTRI" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Project Hail Mary</h3>
+            <div class="movie-meta"><span class="tag">Hollywood</span><span>Sci-Fi</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001041','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/iM0bGp2MATjRZJFPBNHFaOBcJSn.jpg" alt="Ready or Not 2" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=7K3sNRm8J0w" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Ready or Not 2: Here I Come</h3>
+            <div class="movie-meta"><span class="tag">Hollywood</span><span>Horror</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001097','_blank')">
+          <div class="movie-poster">
+            <img src="https://placehold.co/300x450/1a1a1a/d4a853?text=Viyaah+Kartaare+Da&font=playfair-display" alt="Viyaah Kartaare Da" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=IgHYj79Uh_o" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Viyaah Kartaare Da</h3>
+            <div class="movie-meta"><span>Punjabi Comedy</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00000999','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/bxnv4m5BxCVkRadx9Dz8PYx5jnj.jpg" alt="Hoppers" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=hJnAHzo4-KI" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Hoppers</h3>
+            <div class="movie-meta"><span class="tag">Disney</span><span>Animation</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00000997','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/4fma2JOXMePVhCHvNdKCfSLRkEz.jpg" alt="GOAT" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=FKIvsw62YTw" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>GOAT</h3>
+            <div class="movie-meta"><span class="tag">Sony</span><span>Animation</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00000551','_blank')">
+          <div class="movie-poster">
+            <img src="https://placehold.co/300x450/1a1a1a/d4a853?text=Carry+on+Jatta+3&font=playfair-display" alt="Carry on Jatta 3" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" data-trailer="https://www.youtube.com/watch?v=QJ67Pf8PLdk" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Carry on Jatta 3</h3>
+            <div class="movie-meta"><span>Punjabi Comedy</span></div>
+          </div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/h-HO00001063','_blank')">
+          <div class="movie-poster">
+            <img src="https://placehold.co/300x450/1a1a1a/d4a853?text=Alas+Roban&font=playfair-display" alt="Alas Roban" loading="lazy">
+            <div class="movie-poster-overlay">
+              <button class="play-btn" aria-label="Play trailer"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>Alas Roban</h3>
+            <div class="movie-meta"><span>Horror</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COMING SOON -->
+    <div class="movies-panel" id="coming-soon" style="display:none;">
+      <div class="movies-grid">
+
+        <div class="movie-card reveal stagger-1" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001454','_blank')">
+          <div class="movie-poster">
+            <img src="https://placehold.co/300x450/1a1a1a/d4a853?text=The+Dog+Stars&font=playfair-display" alt="The Dog Stars" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=ZRotYOImjoI" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>The Dog Stars</h3><div class="movie-meta"><span class="tag">Mar 27</span><span>Post-Apocalyptic</span></div></div>
+        </div>
+
+        <div class="movie-card reveal stagger-2" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001467','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/jf7kLd9I7APdEdxo6HfxMKCmVsD.jpg" alt="Dracula" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=hverb7siYJ8" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>Dracula</h3><div class="movie-meta"><span class="tag">Apr 3</span><span>Horror</span></div></div>
+        </div>
+
+        <div class="movie-card reveal stagger-3" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001392','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/qp08oF7JCGL5LkGisMhk8FnRqc7.jpg" alt="Michael" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://youtu.be/RXo-y4dugVQ" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>Michael</h3><div class="movie-meta"><span class="tag">Apr 24</span><span>Biopic</span></div></div>
+        </div>
+
+        <div class="movie-card reveal stagger-4" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001409','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/6FRFIogh0oFaOBOmpFpnYtiEYz7.jpg" alt="Devil Wears Prada 2" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=9c-DrMe8o5Q" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>The Devil Wears Prada 2</h3><div class="movie-meta"><span class="tag">May 1</span><span>Comedy</span></div></div>
+        </div>
+
+        <div class="movie-card reveal stagger-5" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001431','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/1GVXwDMeEHyJcTb96gd3IGY5svE.jpg" alt="Mandalorian and Grogu" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=GeM1ZPej8Rg" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>The Mandalorian & Grogu</h3><div class="movie-meta"><span class="tag">May 22</span><span>Star Wars</span></div></div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001429','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/3CwI1bFlqsPpVBMPQYZxrOBdFnP.jpg" alt="Toy Story 5" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=x-20Aj41WFY" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>Toy Story 5</h3><div class="movie-meta"><span class="tag">Jun 19</span><span>Pixar</span></div></div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001462','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/yh4Rg0kVuxUWhSkWjyyhhPPeKY3.jpg" alt="Masters of the Universe" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=UFe6NRgoXCM" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>Masters of the Universe</h3><div class="movie-meta"><span class="tag">Jun 5</span><span>Action</span></div></div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001427','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/ymmDqIUuKBfcLxJZMXl1dghUDzY.jpg" alt="The Odyssey" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=yjEH7TYGcG0" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>The Odyssey</h3><div class="movie-meta"><span class="tag">Jul 17</span><span>Nolan Epic</span></div></div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001465','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/2SNKX4CsEWPptFk4dXatoH8wfH6.jpg" alt="Spider-Man Brand New Day" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=Rd21PhsDHww" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>Spider-Man: Brand New Day</h3><div class="movie-meta"><span class="tag">Jul 31</span><span>Marvel</span></div></div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001391','_blank')">
+          <div class="movie-poster">
+            <img src="https://placehold.co/300x450/1a1a1a/d4a853?text=Mortal+Kombat+II&font=playfair-display" alt="Mortal Kombat II" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>Mortal Kombat II</h3><div class="movie-meta"><span class="tag">May 8</span><span>Action</span></div></div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001428','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/nUaQqoe048qMbf8s4vXqDnkVoIK.jpg" alt="Supergirl" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=p9jZXhYF6Zk" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>Supergirl</h3><div class="movie-meta"><span class="tag">Jun 26</span><span>DC</span></div></div>
+        </div>
+
+        <div class="movie-card reveal" onclick="window.open('https://cuecinemas.com/Browsing/Movies/Details/f-F000001460','_blank')">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w500/7d3iMFMrJiotKMk9Y9fSwEzKfLr.jpg" alt="Minions and Monsters" loading="lazy">
+            <div class="movie-poster-overlay"><button class="play-btn" data-trailer="https://www.youtube.com/watch?v=l54pzz3-Yl8" aria-label="Play trailer"><i class="fas fa-play"></i></button></div>
+          </div>
+          <div class="movie-info"><h3>Minions & Monsters</h3><div class="movie-meta"><span class="tag">Jul 1</span><span>Animation</span></div></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ EXPERIENCES / SCREENS ============ -->
+<section class="experiences-section" id="experiences">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="section-label">Our Screens</span>
+      <h2 class="section-title">Premium Experiences</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle">8 state-of-the-art screens with world-class technology. From our flagship MAXIMUS to our Platinum Dolby Atmos auditoriums.</p>
+    </div>
+
+    <!-- MAXIMUS -->
+    <div class="experience-card flagship reveal-scale" style="background: linear-gradient(rgba(20,20,22,0.85), rgba(15,15,18,0.95)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800') center/cover;"> 
+      <span class="tier-badge flagship-badge">★ Flagship</span>
+      <h3>MAXIMUS</h3>
+      <p style="color:var(--text-secondary);margin-bottom:16px;max-width:700px;">The crown jewel of CUE Cinemas. An unparalleled cinematic experience that sets the standard for premium movie-watching in Pakistan.</p>
+      <ul class="experience-features">
+        <li>World's Most Powerful Cinema Projector</li>
+        <li>Pakistan's First RGB Laser Cinema — brightest screen</li>
+        <li>Pakistan's most powerful audio — Dolby Atmos</li>
+        <li>Platinum Dine-in with restaurant menu served to seats</li>
+        <li>Most comfortable recliners with mobile charging ports</li>
+      </ul>
+      <div style="margin-top:24px;">
+        <a href="https://cuecinemas.com/Browsing/EventsAndExperiences/ExperienceDetails/MAXIMUS" class="btn btn-primary btn-sm">View Showtimes</a>
+      </div>
+    </div>
+
+    <!-- PLATINUM -->
+    <div class="platinum-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+      <div class="experience-card reveal stagger-1" style="background: linear-gradient(rgba(20,20,22,0.85), rgba(15,15,18,0.95)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800') center/cover;">
+        <span class="tier-badge premium-badge">Platinum</span>
+        <h3>PLATINUM 7</h3>
+        <ul class="experience-features">
+          <li>Dolby ATMOS — highest power per sq.ft in Pakistan</li>
+          <li>Brightest screen in Pakistan — Harkness Silver</li>
+          <li>DepthQ 3D Technology</li>
+          <li>Audio Baffle Walls for smooth acoustics</li>
+          <li>Platinum recliners with charging ports</li>
+        </ul>
+        <div style="margin-top:20px;"><a href="https://cuecinemas.com/Browsing/EventsAndExperiences/ExperienceDetails/PLATINUM%207" class="btn btn-outline btn-sm">Showtimes</a></div>
+      </div>
+      <div class="experience-card reveal stagger-2" style="background: linear-gradient(rgba(20,20,22,0.85), rgba(15,15,18,0.95)), url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=800') center/cover;">
+        <span class="tier-badge premium-badge">Platinum</span>
+        <h3>PLATINUM 8</h3>
+        <ul class="experience-features">
+          <li>Dolby ATMOS — highest power per sq.ft in Pakistan</li>
+          <li>Brightest screen in Pakistan — Harkness Silver</li>
+          <li>DepthQ 3D Technology</li>
+          <li>Audio Baffle Walls for smooth acoustics</li>
+          <li>Platinum recliners with charging ports</li>
+        </ul>
+        <div style="margin-top:20px;"><a href="https://cuecinemas.com/Browsing/EventsAndExperiences/ExperienceDetails/PLATINUM%208" class="btn btn-outline btn-sm">Showtimes</a></div>
+      </div>
+    </div>
+
+    <!-- STANDARD SCREENS -->
+    <div class="screens-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+      <div class="experience-card reveal stagger-1" style="background: linear-gradient(rgba(20,20,22,0.85), rgba(15,15,18,0.95)), url('https://images.unsplash.com/photo-1507924538820-ede94a04019d?q=80&w=800') center/cover;">
+        <span class="tier-badge standard-badge">Screen</span>
+        <h3>SCREEN 2</h3>
+        <ul class="experience-features">
+          <li>Dolby Atmos immersive experience</li>
+          <li>Laser phosphorus projector</li>
+          <li>Harkness edge-to-edge screen</li>
+          <li>Multiple seating options</li>
+        </ul>
+        <div style="margin-top:16px;"><a href="https://cuecinemas.com/Browsing/EventsAndExperiences/ExperienceDetails/SCREEN%202" class="btn btn-outline btn-sm">Showtimes</a></div>
+      </div>
+      <div class="experience-card reveal stagger-2" style="background: linear-gradient(rgba(20,20,22,0.85), rgba(15,15,18,0.95)), url('https://images.unsplash.com/photo-1505686994434-e3f942ce23ec?q=80&w=800') center/cover;">
+        <span class="tier-badge standard-badge">Screen</span>
+        <h3>SCREEN 3</h3>
+        <ul class="experience-features">
+          <li>Strongest 7.1 QSC Surround in Pakistan</li>
+          <li>Laser phosphorus projector</li>
+          <li>Harkness screen</li>
+          <li>Multiple seating options</li>
+        </ul>
+        <div style="margin-top:16px;"><a href="https://cuecinemas.com/Browsing/EventsAndExperiences/ExperienceDetails/SCREEN%203" class="btn btn-outline btn-sm">Showtimes</a></div>
+      </div>
+      <div class="experience-card reveal stagger-3" style="background: linear-gradient(rgba(20,20,22,0.85), rgba(15,15,18,0.95)), url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=800') center/cover;">
+        <span class="tier-badge standard-badge">Screen</span>
+        <h3>SCREEN 4</h3>
+        <ul class="experience-features">
+          <li>7.1 QSC Surround</li>
+          <li>Laser phosphorus projectors</li>
+          <li>Harkness screens</li>
+          <li>Gold seats — padded with wider leg space</li>
+        </ul>
+        <div style="margin-top:16px;"><a href="https://cuecinemas.com/Browsing/EventsAndExperiences/ExperienceDetails/SCREEN%204" class="btn btn-outline btn-sm">Showtimes</a></div>
+      </div>
+      <div class="experience-card reveal stagger-4" style="background: linear-gradient(rgba(20,20,22,0.85), rgba(15,15,18,0.95)), url('https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=800') center/cover;">
+        <span class="tier-badge standard-badge">Screen</span>
+        <h3>SCREEN 5</h3>
+        <ul class="experience-features">
+          <li>7.1 QSC Surround</li>
+          <li>Laser phosphorus projectors</li>
+          <li>Harkness screens</li>
+          <li>Gold seats — padded with wider leg space</li>
+        </ul>
+        <div style="margin-top:16px;"><a href="https://cuecinemas.com/Browsing/EventsAndExperiences/ExperienceDetails/SCREEN%205" class="btn btn-outline btn-sm">Showtimes</a></div>
+      </div>
+      <div class="experience-card reveal stagger-5" style="background: linear-gradient(rgba(20,20,22,0.85), rgba(15,15,18,0.95)), url('https://images.unsplash.com/photo-1574267432553-4b462808152a?q=80&w=800') center/cover;">
+        <span class="tier-badge standard-badge">Screen</span>
+        <h3>SCREEN 6</h3>
+        <ul class="experience-features">
+          <li>7.1 QSC Surround</li>
+          <li>Laser phosphorus projectors</li>
+          <li>Harkness screens</li>
+          <li>Gold seats — padded with wider leg space</li>
+        </ul>
+        <div style="margin-top:16px;"><a href="https://cuecinemas.com/Browsing/EventsAndExperiences/ExperienceDetails/SCREEN%206" class="btn btn-outline btn-sm">Showtimes</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section class="events-section" id="events">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">What's Happening</span>
+      <h2 class="section-title">Events & Experiences</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="events-grid">
+      <div class="event-card reveal stagger-1">
+        <div class="event-card-img" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(15,15,15,0.8) 100%), url('https://images.unsplash.com/photo-1543589077-47d81606c1ea?q=80&w=600') center/cover;"></div>
+        <div class="event-card-body">
+          <h3>Christmas Eve</h3>
+          <p>CUE Cinemas wishes all of its followers a very Happy Christmas. Special lineup for the holiday season — entertainment with your loved ones.</p>
+          <a href="https://cuecinemas.com/Browsing/EventsAndExperiences/EventDetails/0000000011" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </div>
+      <div class="event-card reveal stagger-2">
+        <div class="event-card-img" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(15,15,15,0.8) 100%), url('https://images.unsplash.com/photo-1508361001413-7a9dca21d08a?q=80&w=600') center/cover;"></div>
+        <div class="event-card-body">
+          <h3>Halloween Night</h3>
+          <p>Fun, spooky ambiance across the town. The best Halloween Madness delivered at CUE Cinemas Gulberg.</p>
+          <a href="https://cuecinemas.com/Browsing/EventsAndExperiences/EventDetails/0000000008" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </div>
+      <div class="event-card reveal stagger-3">
+        <div class="event-card-img" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(15,15,15,0.8) 100%), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=600') center/cover;"></div>
+        <div class="event-card-body">
+          <h3>Hush Puppies: Black Carpet Walkway</h3>
+          <p>A mega collaboration with ace designer Munib Nawaz. Lahore's corporate and fashion world for a night to remember at CUE Cinemas.</p>
+          <a href="https://cuecinemas.com/Browsing/EventsAndExperiences/EventDetails/0000000010" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </div>
+      <div class="event-card reveal stagger-4">
+        <div class="event-card-img" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(15,15,15,0.8) 100%), url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=600') center/cover;"></div>
+        <div class="event-card-body">
+          <h3>Life of Prof. Dr Javaid Akram</h3>
+          <p>Documentary screening on the extraordinary life of Professor Javed Akram, produced by Mr Kamran Faiq. Chief Guest: Governor Punjab.</p>
+          <a href="https://cuecinemas.com/Browsing/EventsAndExperiences/EventDetails/0000000014" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </div>
+      <div class="event-card reveal stagger-5">
+        <div class="event-card-img" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(15,15,15,0.8) 100%), url('https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=600') center/cover;"></div>
+        <div class="event-card-body">
+          <h3>Meray Pass Tum Ho — Live Screening</h3>
+          <p>Khalil ul Rehman Qamar & Team ARY Digital. The final screening with massive house-packed audience at CUE Cinemas Gulberg.</p>
+          <a href="https://cuecinemas.com/Browsing/EventsAndExperiences/EventDetails/0000000012" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </div>
+      <div class="event-card reveal">
+        <div class="event-card-img" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(15,15,15,0.8) 100%), url('https://images.unsplash.com/photo-1518192546338-60a7edecadd5?q=80&w=600') center/cover;"></div>
+        <div class="event-card-body">
+          <h3>Valentine's Day</h3>
+          <p>Celebrating love in the air! Come enjoy this special eve with your loved one. Amazing gifts await you at CUE Cinemas.</p>
+          <a href="https://cuecinemas.com/Browsing/EventsAndExperiences/EventDetails/0000000013" class="btn btn-outline btn-sm">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOYALTY ============ -->
+<section class="loyalty-section" id="loyalty">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="section-label">CUE Plus Rewards</span>
+      <h2 class="section-title">Loyalty Program</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle">Watch your favourite films and be rewarded! Earn points on all spending — tickets, food, beverages, and experiences.</p>
+    </div>
+    <div class="loyalty-tiers">
+      <div class="loyalty-tier tier-silver reveal stagger-1">
+        <div class="tier-icon"><i class="fa-solid fa-medal" style="color: #c0c0c0;"></i></div>
+        <h3>Silver</h3>
+        <p class="tier-points">Entry Level</p>
+        <ul>
+          <li>Earn points on all spending</li>
+          <li>400 pts → Large Popcorn</li>
+          <li>700 pts → Combo Meal</li>
+          <li>1,000 pts → Silver Ticket</li>
+          <li>Track status via app</li>
+          <li>Exclusive screening invites</li>
+        </ul>
+        <div style="margin-top:24px;"><a href="https://cuecinemas.com/Browsing/Loyalty/MembershipPrograms/1" class="btn btn-outline btn-sm" style="width:100%;justify-content:center;">Join Free</a></div>
+      </div>
+      <div class="loyalty-tier tier-gold reveal stagger-2">
+        <div class="tier-icon"><i class="fa-solid fa-trophy" style="color: #ffd700;"></i></div>
+        <h3>Gold</h3>
+        <p class="tier-points">2,500+ Points</p>
+        <ul>
+          <li>All Silver benefits</li>
+          <li>1,250 pts → Sweet Spot Ticket</li>
+          <li>Free anniversary ticket</li>
+          <li>Priority event invites</li>
+          <li>Exclusive menu tastings</li>
+          <li>Real-time tracking via app</li>
+        </ul>
+        <div style="margin-top:24px;"><a href="https://cuecinemas.com/Browsing/Loyalty/MembershipPrograms/1" class="btn btn-outline btn-sm" style="width:100%;justify-content:center;">Join Free</a></div>
+      </div>
+      <div class="loyalty-tier tier-platinum reveal stagger-3">
+        <div class="tier-icon"><i class="fa-solid fa-crown" style="color: #e5e4e2;"></i></div>
+        <h3>Platinum</h3>
+        <p class="tier-points">5,000+ Points / Year</p>
+        <ul>
+          <li>All Gold benefits</li>
+          <li>2,000 pts → Platinum Ticket</li>
+          <li>Free ticket on joining Platinum</li>
+          <li>2-for-1 Platinum ticket pricing</li>
+          <li>VIP premiere access</li>
+          <li>Concierge service</li>
+        </ul>
+        <div style="margin-top:24px;"><a href="https://cuecinemas.com/Browsing/Loyalty/MembershipPrograms/1" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Join Free</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / FAQ ============ -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-header center reveal">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">Contact & FAQ</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <div class="contact-info-card">
+          <h3 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:24px;">CUE Cinemas</h3>
+          <div class="contact-item">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><strong style="color:var(--text-primary);">Address</strong><br><span style="color:var(--text-secondary);">57 Main Boulevard Gulberg-3, Lahore, Punjab</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="icon"><i class="fas fa-phone-alt"></i></div>
+            <div><strong style="color:var(--text-primary);">Phone</strong><br><span style="color:var(--text-secondary);">0423-5761610 / 0423-5761614</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <div><strong style="color:var(--text-primary);">Email</strong><br><a href="mailto:feedback@cuecinemas.com" style="color:var(--accent);">feedback@cuecinemas.com</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">How do I get a refund / cancel?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Tickets are non-refundable, non-exchangeable, and non-transferable.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do I give feedback?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>You may give us feedback through our contact form on this website or email us at feedback@cuecinemas.com</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I bring outside food?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Outside food is NOT allowed inside the Cinema Premises. We have our own concessions where you may purchase food and drinks.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do I purchase tickets online?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Go to our homepage, find the movie, cinema and date. Select the showtime for the experience you want. You'll be directed through a step-by-step transaction.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What payment methods are accepted?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Credit Card, Debit Card, Loyalty Points, and Gift Card.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is my credit card information stored?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>No. CUE Cinemas does not store any credit card numbers. You will need to re-enter your card number every time you make a purchase.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do I collect my tickets?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>You'll receive an email or online Booking Number at the time of transaction which you show at the cinema entrance for your entry.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How many days in advance can I book?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>As soon as a movie session is open, you can book tickets for that session.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg width="180" height="42" viewBox="0 0 180 42">
+          <text x="0" y="32" font-family="'Playfair Display', serif" font-size="34" font-weight="900" fill="url(#goldGrad2)">CUE</text>
+          <text x="72" y="32" font-family="'Inter', sans-serif" font-size="10" font-weight="300" fill="#b0b0b0" letter-spacing="4">CINEMAS</text>
+          <defs><linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%"><stop offset="0%" stop-color="#d4a853"/><stop offset="50%" stop-color="#f0dca3"/><stop offset="100%" stop-color="#c9a456"/></linearGradient></defs>
+        </svg>
+        <p>Pakistan's most premium cinema experience. 8 screens, Dolby Atmos, RGB Laser projection, and world-class comfort at Gulberg-3, Lahore.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Movies</h4>
+        <ul>
+          <li><a href="https://cuecinemas.com/Browsing/Movies/NowShowing">Now Showing</a></li>
+          <li><a href="https://cuecinemas.com/Browsing/Movies/ComingSoon">Coming Soon</a></li>
+          <li><a href="https://cuecinemas.com/Browsing/Cinemas">Cinemas</a></li>
+          <li><a href="https://cuecinemas.com/Browsing/EventsAndExperiences">Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <ul>
+          <li><a href="https://cuecinemas.com/Browsing/Loyalty/Clubs">Loyalty Program</a></li>
+          <li><a href="https://cuecinemas.com/Browsing/Loyalty/MembershipPrograms/1">Sign Up</a></li>
+          <li><a href="https://cuecinemas.com/Browsing/Loyalty/ActivateCard">Activate Card</a></li>
+          <li><a href="https://cuecinemas.com/Ticketing/visShop.aspx?visLang=1">Gift Ideas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="https://cuecinemas.com/Browsing/General/Ratings">Ratings</a></li>
+          <li><a href="https://cuecinemas.com/Browsing/General/GeneralEnquiries">Contact Us</a></li>
+          <li><a href="https://cuecinemas.com/Browsing/General/TermsAndConditions">Terms & Conditions</a></li>
+          <li><a href="https://cuecinemas.com/Browsing/General/Privacy">Privacy & FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CUE Cinemas. All Rights Reserved.</span>
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TRAILER MODAL ============ -->
+<div class="modal-overlay" id="trailerModal">
+  <button class="modal-close" aria-label="Close">✕</button>
+  <div class="modal-content">
+    <iframe src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
