@@ -392,6 +392,8 @@ function initMobileNav() {
   toggle.addEventListener('click', () => {
     toggle.classList.toggle('active');
     links.classList.toggle('mobile-open');
+      const navbar = document.getElementById('navbar');
+      if(navbar) navbar.classList.toggle('menu-open');
     document.body.style.overflow = links.classList.contains('mobile-open') ? 'hidden' : '';
   });
 
@@ -400,6 +402,8 @@ function initMobileNav() {
     a.addEventListener('click', () => {
       toggle.classList.remove('active');
       links.classList.remove('mobile-open');
+        const navbar = document.getElementById('navbar');
+        if(navbar) navbar.classList.remove('menu-open');
       document.body.style.overflow = '';
     });
   });

@@ -1664,3 +1664,6 @@ body.loading {
     transform: none !important;
   }
 }
+
+
+@media (max-width: 768px) { .navbar.menu-open { background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border: none !important; box-shadow: none !important; } }
